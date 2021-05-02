@@ -1,0 +1,16 @@
+name: 'Ply'
+description: 'Ply execution and status badge'
+inputs:
+  base:
+    description: 'Base spec'
+    required: true
+  specs:
+    description: 'Spec URLs or paths'
+    required: true
+  output:
+    description: 'Output file path'
+    required: true
+runs:
+  using: 'node14'
+  main: './dist/index.js'
+
