@@ -1,13 +1,13 @@
-import * as core from '@actions/core';
-// import { merge } from './merge';
+import { Args } from './args';
+import { PlyRunner } from './runner';
 
-// TODO input validation required?
-const base = core.getInput('base');
-const specs = core.getInput('specs')
-    .split('\n')
-    .map(s => s.trim())
-    .filter(s => s !== '');
+const args: Args = {
+    cwd: '.',
+    env: { },
+    plyees: [],
+    plyPath: '',
+    plyOptions: {},
+    runOptions: undefined
+};
 
-const output = core.getInput('output');
-
-// merge(base, specs, output);
+new PlyRunner().run(args);

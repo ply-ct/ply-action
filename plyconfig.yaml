@@ -1,0 +1,8 @@
+testsLocation: test
+
+valuesFiles:
+  - test/values/global.json
+
+outputFile: ply-results.json
+
+# verbose: true
