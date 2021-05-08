@@ -13,6 +13,6 @@ inputs:
       required: false
       default: node_modules/ply-ct/dist
 runs:
-  using: 'node14'
+  using: 'node12'
   main: './dist/index.js'
 
