@@ -3797,7 +3797,6 @@ class PlyRunner {
     async run(args) {
         try {
             const start = Date.now();
-            throw new Error('Test error handling');
             process.chdir(args.cwd || '.');
             const cwd = process.cwd();
             core.info(`Running ply in cwd: ${cwd}`);
