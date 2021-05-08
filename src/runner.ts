@@ -10,12 +10,10 @@ export class PlyRunner {
             const start = Date.now();
 
             process.chdir(args.cwd);
+            const cwd = process.cwd();
+            core.info(`Running ply in cwd: ${cwd}`);
 
-            for (const envVar in args.env) {
-                process.env[envVar] = args.env[envVar];
-            }
-
-            const plyPath = args.plyPath ? args.plyPath : path.dirname(require.resolve('ply-ct'));
+            const plyPath = `${cwd}/${args.plyPath}`;
             core.info(`Using ply package at ${plyPath}`);
 
             // actual execution uses ply on specified path
@@ -24,12 +22,10 @@ export class PlyRunner {
             const plier = new Plier(args.plyOptions);
 
             const paths = args.plyees.map(p => {
-                return path.isAbsolute(p) ? p : (args.plyOptions as any).testsLocation + path.sep + p;
+                return path.isAbsolute(p) ? p : plier.options.testsLocation + path.sep + p;
             });
             const plyees = await plier.find(paths);
 
-
-            const cwd = process.cwd();
             module.paths.push(cwd, path.join(cwd, 'node_modules'));
 
             core.info(`Running plyees:\n${plyees.join()}`);

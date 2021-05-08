@@ -1,11 +1,11 @@
+import * as path from 'path';
 import { Args } from './args';
 import { PlyRunner } from './runner';
 
 const args: Args = {
     cwd: '.',
-    env: { },
     plyees: [],
-    plyPath: '',
+    plyPath: 'node_modules/ply-ct/dist',
     plyOptions: {},
     runOptions: undefined
 };

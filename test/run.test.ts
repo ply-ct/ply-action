@@ -23,11 +23,8 @@ describe('runner', () => {
 
         const args: Args = {
             cwd: '.',
-            env: {},
             plyees: paths,
-            plyPath: '',
-            plyOptions: options,
-            runOptions: undefined
+            plyPath: 'node_modules/ply-ct/dist'
         };
 
         const res = await new PlyRunner().run(args);

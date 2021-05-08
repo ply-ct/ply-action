@@ -1,15 +1,17 @@
 name: 'Ply'
 description: 'Ply execution and status badge'
 inputs:
-  base:
-    description: 'Base spec'
-    required: true
-  specs:
-    description: 'Spec URLs or paths'
-    required: true
-  output:
-    description: 'Output file path'
-    required: true
+    cwd:
+      description: Working directory for ply execution
+      required: false
+      default: '.'
+    plyees:
+      descripition: Plyee paths (otherwise all ply requests/flows/cases)
+      required: false
+    plyPath:
+      description: Path to ply package
+      required: false
+      default: node_modules/ply-ct/dist
 runs:
   using: 'node14'
   main: './dist/index.js'
