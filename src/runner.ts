@@ -1,6 +1,7 @@
 import * as process from 'process';
 import * as path from 'path';
 import * as core from '@actions/core';
+import * as glob from 'glob';
 import { Args } from './args';
 
 export class PlyRunner {
@@ -9,7 +10,7 @@ export class PlyRunner {
         try {
             const start = Date.now();
 
-            process.chdir(args.cwd);
+            process.chdir(args.cwd || '.');
             const cwd = process.cwd();
             core.info(`Running ply in cwd: ${cwd}`);
 
@@ -20,8 +21,19 @@ export class PlyRunner {
             const ply = require(plyPath + '/index.js');
             const Plier: typeof import('ply-ct').Plier = ply.Plier;
             const plier = new Plier(args.plyOptions);
+            const globOptions = {
+                cwd: plier.options.testsLocation,
+                ignore: plier.options.ignore
+            };
 
-            const paths = args.plyees.map(p => {
+            let paths = [
+                ...glob.sync(plier.options.requestFiles, globOptions),
+                ...glob.sync(plier.options.caseFiles, globOptions),
+                ...glob.sync(plier.options.flowFiles, globOptions)
+            ];
+
+
+            paths = paths.map(p => {
                 return path.isAbsolute(p) ? p : plier.options.testsLocation + path.sep + p;
             });
             const plyees = await plier.find(paths);
