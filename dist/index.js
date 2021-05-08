@@ -3839,6 +3839,7 @@ class PlyRunner {
         catch (err) {
             console.error(err);
             core.error(err);
+            process.exit(1);
         }
     }
 }

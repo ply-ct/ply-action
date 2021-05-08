@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FORCE_COLOR: 'true'
+      PLY_VALUES: ${{ secrets.PLY_VALUES }}
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
