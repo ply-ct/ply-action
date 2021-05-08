@@ -3769,12 +3769,12 @@ function wrappy (fn, cb) {
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const runner_1 = __nccwpck_require__(878);
+/**
+ * TODO args come from inputs
+ */
 const args = {
     cwd: '.',
-    plyees: [],
-    plyPath: 'node_modules/ply-ct/dist',
-    plyOptions: {},
-    runOptions: undefined
+    plyPath: 'node_modules/ply-ct/dist'
 };
 new runner_1.PlyRunner().run(args);
 
@@ -3829,10 +3829,11 @@ class PlyRunner {
             if (plier.options.outputFile) {
                 new ply.Storage(plier.options.outputFile).write(JSON.stringify(res, null, plier.options.prettyIndent));
             }
+            core.info('Ply action finished');
             if (res.Failed || res.Errored) {
+                core.error(JSON.stringify(res));
                 process.exit(1);
             }
-            core.info('Ply action finished');
             return res;
         }
         catch (err) {

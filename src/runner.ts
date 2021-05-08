@@ -50,11 +50,12 @@ export class PlyRunner {
             if (plier.options.outputFile) {
                 new ply.Storage(plier.options.outputFile).write(JSON.stringify(res, null, plier.options.prettyIndent));
             }
+            core.info('Ply action finished');
+
             if (res.Failed || res.Errored) {
+                core.error(JSON.stringify(res));
                 process.exit(1);
             }
-
-            core.info('Ply action finished');
 
             return res;
         }
