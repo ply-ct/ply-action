@@ -1,7 +1,7 @@
 export interface Args {
-    cwd?: string;
+    cwd: string;
+    plyPath: string;
     plyees?: string[];  // Plyee paths
-    plyPath?: string;
     plyOptions?: object;
     runOptions?: object;
 }

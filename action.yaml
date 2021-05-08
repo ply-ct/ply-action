@@ -5,13 +5,13 @@ inputs:
       description: Working directory for ply execution
       required: false
       default: '.'
-    plyees:
-      descripition: Plyee paths (otherwise all ply requests/flows/cases)
-      required: false
     plyPath:
       description: Path to ply package
       required: false
       default: node_modules/ply-ct/dist
+    plyees:
+      descripition: Plyee paths (otherwise all ply requests/flows/cases)
+      required: false
 runs:
   using: 'node12'
   main: './dist/index.js'

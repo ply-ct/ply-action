@@ -1,13 +1,12 @@
-import * as path from 'path';
 import { Args } from './args';
 import { PlyRunner } from './runner';
 
+/**
+ * TODO args come from inputs
+ */
 const args: Args = {
     cwd: '.',
-    plyees: [],
-    plyPath: 'node_modules/ply-ct/dist',
-    plyOptions: {},
-    runOptions: undefined
+    plyPath: 'node_modules/ply-ct/dist'
 };
 
 new PlyRunner().run(args);
