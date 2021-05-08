@@ -1,7 +1,6 @@
 import * as process from 'process';
 import * as path from 'path';
 import * as core from '@actions/core';
-import * as ply from 'ply-ct';
 import { Args } from './args';
 
 export class PlyRunner {
@@ -48,6 +47,8 @@ export class PlyRunner {
             }
 
             core.info('Ply action finished');
+
+            return res;
         }
         catch (err) {
             console.error(err);

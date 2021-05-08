@@ -30,6 +30,10 @@ describe('runner', () => {
             runOptions: undefined
         };
 
-        await new PlyRunner().run(args);
+        const res = await new PlyRunner().run(args);
+
+        expect(res?.Passed).to.be.equal(2);
+        expect(res?.Failed).to.be.equal(0);
+        expect(res?.Errored).to.be.equal(0);
     });
 });
