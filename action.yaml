@@ -1,5 +1,5 @@
-name: 'Ply'
-description: 'Ply execution and status badge'
+name: Ply
+description: Ply execution and status badge
 inputs:
     cwd:
       description: Working directory for ply execution
@@ -13,6 +13,6 @@ inputs:
       descripition: Plyee paths (otherwise all ply requests/flows/cases)
       required: false
 runs:
-  using: 'node12'
+  using: node12
   main: './dist/index.js'
 

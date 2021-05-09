@@ -9,4 +9,10 @@
   <img src="https://ply-ct.com/ply/badge/passing.svg" />
 </a>
 
-# ply-action
+# Ply Action
+GitHub action to execute [Ply](https://github.com/ply-ct/ply#readme) autotests.
+If your repository is public, you can also display a badge indicating success or failure.
+
+# Usage
+
+
