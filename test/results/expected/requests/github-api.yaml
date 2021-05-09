@@ -13,7 +13,7 @@ repositoryTopics:
     body: |-
       {
         "names": [
-          "rest-api",
+          "rest-apix",
           "testing",
           "typescript",
           "nodejs",

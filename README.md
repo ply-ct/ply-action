@@ -6,7 +6,7 @@
   <img src="https://github.com/ply-ct/ply-action/workflows/build/badge.svg" />
 </a>
 <a href="https://github.com/ply-ct/ply-action/actions">
-  <img src="https://ply-ct.com/ply/badge/passing.svg" />
+  <img src="https://ply-ct.com/badges/ply-ct/ply-action/workflows/ply" />
 </a>
 
 # Ply Action
