@@ -15,4 +15,6 @@ If your repository is public, you can also display a badge indicating success or
 
 # Usage
 
-
+```
+https://docs.github.com/en/actions/managing-workflow-runs/adding-a-workflow-status-badge
+```
