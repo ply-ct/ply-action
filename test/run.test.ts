@@ -1,12 +1,11 @@
 import { expect } from 'chai';
-import { Args } from '../src/args';
-import { PlyRunner } from '../src/runner';
+import { PlyArgs, PlyRunner } from '../src/runner';
 
 describe('runner', () => {
 
     it('runs ply', async () => {
 
-        const args: Args = {
+        const args: PlyArgs = {
             cwd: '.',
             plyPath: 'node_modules/ply-ct/dist'
         };
