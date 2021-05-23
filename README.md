@@ -24,7 +24,7 @@ jobs:
       with:
         node-version: '14.x'
     - run: npm install
-    - uses: ply-ct/ply-action@v1
+    - uses: ply-ct/ply-action@v1.0.1
       with: 
         ply-path: node_modules/ply-ct/dist 
 ```
@@ -33,7 +33,7 @@ This example runs all Ply tests and fails if they don't succeed.
 ## Ply results badge
 A Ply badge can easily be added to public repositories, like this example from [ply-demo](https://github.com/ply-ct/ply-demo):
 ```markdown
-![ply badge](https://ply-ct.com/badges/ply-ct/ply-demo/workflows/build)
+![ply badge](https://ply-ct.com/badges/ply-ct/ply-demo/workflows/build?)
 <!-- substitute your [owner]/[repository] -->
 ```
 In fact, ply-action is not even required for this feature. The badge URL above follows the
@@ -41,7 +41,7 @@ same pattern as [GitHub workflow status badges](https://docs.github.com/en/actio
 The standard GitHub badge URL for ply-demo's workflow is `https://github.com/ply-ct/ply-demo/workflows/build/badge.svg`,
 whereas to display a Ply badge for the same workflow the URL is `https://ply-ct.com/badges/ply-ct/ply-demo/workflows/build`.
 Basically the same path (`<owner>/<repository>/workflows/<workflow_name>`). This works for public repositories because Ply is
-able to retrieve their workflow build status.
+able to retrieve their workflow build status. The question mark at the end of the URL is to prevent overly-aggressive GitHub CDN caching.
 
 ## Private repositories
 Private repositories can use ply-action as in the example above, but to include a badge some additional configuration is needed:
