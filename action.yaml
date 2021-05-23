@@ -1,4 +1,4 @@
-name: Ply
+name: Ply CT
 description: Ply autotest execution and status badge
 inputs:
   plyees:
