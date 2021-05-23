@@ -1,5 +1,5 @@
-name: EIS API Test
-description: EIS API autotest execution and status badge
+name: Ply
+description: Ply autotest execution and status badge
 inputs:
   plyees:
     description: Glob pattern(s) for requests/flows/cases (otherwise all ply tests)

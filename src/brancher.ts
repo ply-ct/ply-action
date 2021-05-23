@@ -40,8 +40,8 @@ export class Brancher {
     }
 
     async commitAndPush(status: RunStatus) {
-        await exec('git', [ 'config', '--local', 'user.email', 'eis-cicd@lumen.com' ], { cwd: this.repoDir });
-        await exec('git', [ 'config', '--local', 'user.name', 'EIS CICD' ], { cwd: this.repoDir });
+        await exec('git', ['config', '--local', 'user.email', 'donaldoakes@users.noreply.github.com' ], { cwd: this.repoDir });
+        await exec('git', [ 'config', '--local', 'user.name', 'Ply GitHub Action' ], { cwd: this.repoDir });
         await exec('git', [ 'add', '.' ], { cwd: this.repoDir });
         await exec('git', [ 'commit', '-m', `Update badge per status: ${status}` ], { cwd: this.repoDir });
         await exec('git', [ 'push', this.remote, 'HEAD' ], { cwd: this.repoDir });
