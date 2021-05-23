@@ -2,7 +2,7 @@ name: Ply CT
 description: Ply autotest execution and status badge
 branding:
   icon: play
-  color: white
+  color: blue
 inputs:
   plyees:
     description: Glob pattern(s) for requests/flows/cases (otherwise all ply tests)
