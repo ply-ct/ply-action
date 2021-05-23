@@ -2,18 +2,18 @@ name: EIS API Test
 description: EIS API autotest execution and status badge
 inputs:
   plyees:
-    description: Plyee paths (otherwise all ply requests/flows/cases).
+    description: Glob pattern(s) for requests/flows/cases (otherwise all ply tests)
     required: false
   cwd:
-    description: Working directory for ply execution.
+    description: Working directory for ply execution
     required: false
     default: '.'
   ply-path:
-    description: 'Path to ply package (eg: node_modules/ply-ct/dist). Default is bundled ply.'
+    description: 'Path to ply package (eg: node_modules/ply-ct/dist)'
     required: false
-    default: node_modules/ply-ct/dist # TODO remove this
+    default: node_modules/ply-ct/dist
   result-file:
-    description: Result file in case Ply tests were already run in a previous workflow/job.
+    description: Result file in case Ply tests were already run in a previous workflow/job
     required: false
   badge-branch:
     description: 'Branch to contain status badge (eg: "badge"). Needed to display Ply badge for private repositories.'

@@ -30,7 +30,7 @@ export class PlyRunner {
         const cwd = process.cwd();
         core.info(`Running ply in cwd: ${cwd}`);
 
-        const plyPath = `${cwd}/${args.plyPath}`;
+        const plyPath = path.isAbsolute(args.plyPath) ? args.plyPath : `${cwd}/${args.plyPath}`;
         core.info(`Using ply package at ${plyPath}`);
 
         // actual execution uses ply on specified path
