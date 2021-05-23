@@ -24,7 +24,7 @@ jobs:
       with:
         node-version: '14.x'
     - run: npm install
-    - uses: ply-ct/ply-action@v0.1.2
+    - uses: ply-ct/ply-action@v1
       with: 
         ply-path: node_modules/ply-ct/dist 
 ```
