@@ -18,7 +18,7 @@ export class Badger {
             let doUpdate = true;
             if (fs.existsSync(`${this.repoDir}/${this.badgePath}`)) {
                 const existing = fs.readFileSync(`${this.repoDir}/${this.badgePath}`, { encoding: 'utf8' });
-                if (svg === existing) doUpdate = false;
+                if (svg === existing.replace(/\r/g, '')) doUpdate = false;
             }
             if (doUpdate) {
                 core.info(`Writing '${status}' badge to ${this.repoDir}/${this.badgePath}`);
