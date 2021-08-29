@@ -1,4 +1,4 @@
-<a href="https://ply-ct.com">
+<a href="https://ply-ct.org">
   <img alt="ply-logo" src="https://raw.githubusercontent.com/ply-ct/ply/master/docs/img/ply-logo.png" width="128">
 </a>
 <br><br>
@@ -6,12 +6,12 @@
   <img src="https://github.com/ply-ct/ply-action/workflows/build/badge.svg" />
 </a>
 <a href="https://github.com/ply-ct/ply-action/actions">
-  <img src="https://ply-ct.com/badges/ply-ct/ply-action/workflows/ply" />
+  <img src="https://ply-ct.org/badges/ply-ct/ply-action/workflows/ply" />
 </a>
 
 # Ply Action
 GitHub action to execute [Ply](https://github.com/ply-ct/ply#readme) autotests.
-You can also display a badge ![ply success](https://ply-ct.com/ply/badge/passing.svg) indicating success or failure.
+You can also display a badge ![ply success](https://ply-ct.org/ply/badge/passing.svg) indicating success or failure.
 
 ## Example workflow file
 ```yaml
@@ -33,13 +33,13 @@ This example runs all Ply tests and fails if they don't succeed.
 ## Ply results badge
 A Ply badge can easily be added to public repositories, like this example from [ply-demo](https://github.com/ply-ct/ply-demo):
 ```markdown
-![ply badge](https://ply-ct.com/badges/ply-ct/ply-demo/workflows/build?)
+![ply badge](https://ply-ct.org/badges/ply-ct/ply-demo/workflows/build?)
 <!-- substitute your [owner]/[repository] -->
 ```
 In fact, ply-action is not even required for this feature. The badge URL above follows the
 same pattern as [GitHub workflow status badges](https://docs.github.com/en/actions/managing-workflow-runs/adding-a-workflow-status-badge).
 The standard GitHub badge URL for ply-demo's workflow is `https://github.com/ply-ct/ply-demo/workflows/build/badge.svg`,
-whereas to display a Ply badge for the same workflow the URL is `https://ply-ct.com/badges/ply-ct/ply-demo/workflows/build`.
+whereas to display a Ply badge for the same workflow the URL is `https://ply-ct.org/badges/ply-ct/ply-demo/workflows/build`.
 Basically the same path (`<owner>/<repository>/workflows/<workflow_name>`). This works for public repositories because Ply is
 able to retrieve their workflow build status. The question mark at the end of the URL is to prevent overly-aggressive GitHub CDN caching.
 
@@ -63,7 +63,7 @@ Ply badge can be referenced from your own repository:
 ## External execution
 If you've already integrated Ply CLI commands into a GitHub workflow (say with code coverage metrics), you may prefer to
 skip Ply test execution altogether, and use ply-action simply to perform a badge commit based on the results of previous Ply CLI run.
-In that case, specify the path to an overall Ply results file created using the `--resultFile` [CLI arg](https://ply-ct.com/ply/topics/config):
+In that case, specify the path to an overall Ply results file created using the `--resultFile` [CLI arg](https://ply-ct.org/ply/topics/config):
 ```yaml
     - uses: ply-ct/ply-action@v0.1.1
       with: 

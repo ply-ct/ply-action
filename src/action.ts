@@ -50,8 +50,8 @@ const handleResult = async (result: RunResult) => {
         }
         await updateBadge(status);
     } catch (err) {
-        core.error(err);
-        core.setFailed(err);
+        core.error(err as Error);
+        core.setFailed(err as Error);
         console.debug(err);
     }
 };
@@ -74,8 +74,8 @@ const updateBadge = async (status: RunStatus) => {
             }
         }
     } catch (err) {
-        core.error(err);
-        core.setFailed(err);
+        core.error(err as Error);
+        core.setFailed(err as Error);
         console.debug(err);
     }
 };

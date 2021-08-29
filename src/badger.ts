@@ -11,7 +11,7 @@ export class Badger {
     ) { }
 
     async update(status: RunStatus): Promise<boolean> {
-        const url = `https://ply-ct.com/ply/badge/${status}.svg`;
+        const url = `https://ply-ct.org/ply/badge/${status}.svg`;
         const response = await fetch(url);
         if (response.ok) {
             const svg = await response.text();

@@ -10527,14 +10527,14 @@ class Badger {
         this.badgePath = badgePath;
     }
     async update(status) {
-        const url = `https://ply-ct.com/ply/badge/${status}.svg`;
-        const response = await node_fetch_1.default(url);
+        const url = `https://ply-ct.org/ply/badge/${status}.svg`;
+        const response = await (0, node_fetch_1.default)(url);
         if (response.ok) {
             const svg = await response.text();
             let doUpdate = true;
             if (fs.existsSync(`${this.repoDir}/${this.badgePath}`)) {
                 const existing = fs.readFileSync(`${this.repoDir}/${this.badgePath}`, { encoding: 'utf8' });
-                if (svg === existing)
+                if (svg === existing.replace(/\r/g, ''))
                     doUpdate = false;
             }
             if (doUpdate) {
@@ -10581,31 +10581,31 @@ class Brancher {
         this.repoDir = `repo-${new Date().getTime().toString(16)}`;
     }
     async clone() {
-        await exec_1.exec('git', ['clone', this.remote, this.repoDir]);
+        await (0, exec_1.exec)('git', ['clone', this.remote, this.repoDir]);
         const octo = github.getOctokit(this.token);
         const branchesResponse = await octo.repos.listBranches({ owner: this.owner, repo: this.repo });
         if (branchesResponse.status !== 200)
             throw new Error(`Failed to retrieve branches for: ${this.remote}`);
         const branches = branchesResponse.data.map(b => b.name);
         if (branches.includes(this.branch)) {
-            await exec_1.exec('git', ['checkout', this.branch], { cwd: this.repoDir });
+            await (0, exec_1.exec)('git', ['checkout', this.branch], { cwd: this.repoDir });
         }
         else {
             // orphan branch (commit to default)
-            await exec_1.exec('git', ['checkout', '--orphan', this.branch], { cwd: this.repoDir });
-            await exec_1.exec('git', ['rm', '-rf', '.'], { cwd: this.repoDir });
+            await (0, exec_1.exec)('git', ['checkout', '--orphan', this.branch], { cwd: this.repoDir });
+            await (0, exec_1.exec)('git', ['rm', '-rf', '.'], { cwd: this.repoDir });
         }
     }
     async commitAndPush(status) {
-        await exec_1.exec('git', ['config', '--local', 'user.email', 'donaldoakes@users.noreply.github.com'], { cwd: this.repoDir });
-        await exec_1.exec('git', ['config', '--local', 'user.name', 'Ply GitHub Action'], { cwd: this.repoDir });
-        await exec_1.exec('git', ['add', '.'], { cwd: this.repoDir });
-        await exec_1.exec('git', ['commit', '-m', `Update badge per status: ${status}`], { cwd: this.repoDir });
-        await exec_1.exec('git', ['push', this.remote, 'HEAD'], { cwd: this.repoDir });
+        await (0, exec_1.exec)('git', ['config', '--local', 'user.email', 'donaldoakes@users.noreply.github.com'], { cwd: this.repoDir });
+        await (0, exec_1.exec)('git', ['config', '--local', 'user.name', 'Ply GitHub Action'], { cwd: this.repoDir });
+        await (0, exec_1.exec)('git', ['add', '.'], { cwd: this.repoDir });
+        await (0, exec_1.exec)('git', ['commit', '-m', `Update badge per status: ${status}`], { cwd: this.repoDir });
+        await (0, exec_1.exec)('git', ['push', this.remote, 'HEAD'], { cwd: this.repoDir });
     }
     async cleanup() {
         if (fs.existsSync(this.repoDir)) {
-            await io_1.rmRF(this.repoDir);
+            await (0, io_1.rmRF)(this.repoDir);
         }
     }
 }
