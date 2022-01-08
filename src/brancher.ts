@@ -27,7 +27,7 @@ export class Brancher {
     async clone() {
         await exec('git', ['clone', this.remote, this.repoDir]);
         const octo = github.getOctokit(this.token);
-        const branchesResponse = await octo.repos.listBranches({ owner: this.owner, repo: this.repo });
+        const branchesResponse = await octo.repos.listBranches({ owner: this.owner, repo: this.repo, per_page: 100 });
         if (branchesResponse.status !== 200) throw new Error(`Failed to retrieve branches for: ${this.remote}`);
         const branches = branchesResponse.data.map(b => b.name);
         if (branches.includes(this.branch)) {
