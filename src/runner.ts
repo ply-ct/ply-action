@@ -35,7 +35,7 @@ export class PlyRunner {
 
         // actual execution uses ply on specified path
         const ply = require(plyPath + '/index.js');
-        const Plier: typeof import('ply-ct').Plier = ply.Plier;
+        const Plier: typeof import('@ply-ct/ply').Plier = ply.Plier;
         const plier = new Plier(args.plyOptions);
         const globOptions = {
             cwd: plier.options.testsLocation,
