@@ -33,7 +33,7 @@ This example runs all Ply tests and fails if they don't succeed.
 ## Ply results badge
 A Ply badge can easily be added to public repositories, like this example from [ply-demo](https://github.com/ply-ct/ply-demo):
 ```markdown
-![ply badge](https://ply-ct.org/badges/ply-ct/ply-demo/workflows/build?)
+![ply badge](https://ply-ct.org/badges/ply-ct/ply-demo/workflows/build)
 <!-- substitute your [owner]/[repository] -->
 ```
 In fact, ply-action is not even required for this feature. The badge URL above follows the
