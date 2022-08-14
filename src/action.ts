@@ -9,7 +9,8 @@ if (resultFile) {
     core.info(`Loading Ply results from: ${resultFile}`);
     fs.promises.readFile(resultFile, { encoding: 'utf8' })
     .then(async (contents) => {
-        const result = JSON.parse(contents);
+        let result = JSON.parse(contents);
+        if (result.overall) result = result.overall;
         await handleResult(result);
     })
     .catch(async (err) => {

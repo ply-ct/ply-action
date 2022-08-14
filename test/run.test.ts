@@ -7,7 +7,7 @@ describe('runner', () => {
 
         const args: PlyArgs = {
             cwd: '.',
-            plyPath: 'node_modules/ply-ct/dist'
+            plyPath: 'node_modules/@ply-ct/ply/dist'
         };
 
         const res = await new PlyRunner().run(args);
