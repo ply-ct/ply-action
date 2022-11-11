@@ -1,6 +1,6 @@
 {
   "name": "ply-action",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Ply GitHub Action",
   "main": "index.js",
   "keywords": [
