@@ -9,6 +9,7 @@
     "sourceMap": true,
     "strict": true,
     "allowJs": true,
+    "skipLibCheck": true,
     "outDir": "dist"
   },
   "exclude": [

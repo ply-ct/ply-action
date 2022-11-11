@@ -1,4 +1,4 @@
-name: Ply CT
+name: ply-action
 description: Ply autotest execution and status badge
 branding:
   icon: play
@@ -14,7 +14,6 @@ inputs:
   ply-path:
     description: 'Path to ply package (eg: node_modules/@ply-ct/ply/dist)'
     required: false
-    default: node_modules/@ply-ct/ply/dist
   result-file:
     description: Result file in case Ply tests were already run in a previous workflow/job
     required: false

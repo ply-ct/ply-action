@@ -7,7 +7,7 @@ export type RunStatus = 'passing' | 'failing';
 
 export interface PlyArgs {
     cwd: string;
-    plyPath: string;
+    plyPath?: string;
     plyees?: string[];  // Plyee paths
     plyOptions?: object;
     runOptions?: object;
@@ -30,11 +30,14 @@ export class PlyRunner {
         const cwd = process.cwd();
         core.info(`Running ply in cwd: ${cwd}`);
 
-        const plyPath = path.isAbsolute(args.plyPath) ? args.plyPath : `${cwd}/${args.plyPath}`;
-        core.info(`Using ply package at ${plyPath}`);
+        let plyPath = '';
+        if (args.plyPath) {
+            plyPath = path.isAbsolute(args.plyPath) ? args.plyPath : `${cwd}/${args.plyPath}`;
+            core.info(`Using ply package at ${plyPath}`);
+        }
 
         // actual execution uses ply on specified path
-        const ply = require(plyPath + '/index.js');
+        const ply = plyPath ? require(plyPath + '/index.js') : require('@ply-ct/ply');
         const Plier: typeof import('@ply-ct/ply').Plier = ply.Plier;
         const plier = new Plier(args.plyOptions);
         const globOptions = {
