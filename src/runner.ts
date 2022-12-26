@@ -27,17 +27,17 @@ export class PlyRunner {
         const start = Date.now();
 
         process.chdir(args.cwd || '.');
-        const cwd = process.cwd();
-        core.info(`Running ply in cwd: ${cwd}`);
+        const cwd = path.resolve(process.cwd());
+        core.info(`Running ply in directory: ${path.normalize(cwd)}`);
 
         let plyPath = '';
         if (args.plyPath) {
-            plyPath = path.isAbsolute(args.plyPath) ? args.plyPath : `${cwd}/${args.plyPath}`;
+            plyPath = path.isAbsolute(args.plyPath) ? args.plyPath : path.resolve(args.plyPath);
             core.info(`Using ply package at ${plyPath}`);
         }
 
         // actual execution uses ply on specified path
-        const ply = plyPath ? require(plyPath + '/index.js') : require('@ply-ct/ply');
+        const ply = plyPath ? require(plyPath + '/dist/index.js') : require('@ply-ct/ply');
         const Plier: typeof import('@ply-ct/ply').Plier = ply.Plier;
         const plier = new Plier(args.plyOptions);
         const globOptions = {

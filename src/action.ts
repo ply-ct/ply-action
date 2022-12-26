@@ -3,6 +3,9 @@ import * as core from '@actions/core';
 import { PlyArgs, PlyRunner, RunResult, RunStatus } from './runner';
 import { Brancher } from './brancher';
 import { Badger } from './badger';
+import { plyActionVersion } from './version';
+
+core.info(`Ply action ${plyActionVersion}`);
 
 const resultFile = core.getInput('result-file');
 if (resultFile) {

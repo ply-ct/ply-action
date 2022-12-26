@@ -24,7 +24,7 @@ jobs:
       with:
         node-version: '16.x'
     - run: npm install
-    - uses: ply-ct/ply-action@v2
+    - uses: ply-ct/ply-action@v2.1
 ```
 This example runs all Ply tests and fails if they don't succeed.
 
@@ -44,7 +44,7 @@ able to retrieve their workflow build status. The question mark at the end of th
 ## Private repositories
 Private repositories can use ply-action as in the example above, but to include a badge some additional configuration is needed:
 ```yaml
-    - uses: ply-ct/ply-action@v2
+    - uses: ply-ct/ply-action@v2.1
       with: 
         github-token: ${{ secrets.MY_GITHUB_TOKEN }}
         badge-branch: badge
@@ -62,7 +62,7 @@ If you've already integrated Ply CLI commands into a GitHub workflow (say with c
 skip Ply test execution altogether, and use ply-action simply to perform a badge commit based on the results of previous Ply CLI run.
 In that case, specify the path to an overall Ply results file created using the `--resultFile` [CLI arg](https://ply-ct.org/ply/topics/config):
 ```yaml
-    - uses: ply-ct/ply-action@v2
+    - uses: ply-ct/ply-action@v2.1
       with: 
         ply-path: node_modules/ply-ct/dist
         result-file: test/api/results/actual/ply-results.json        
@@ -76,7 +76,7 @@ In that case, specify the path to an overall Ply results file created using the 
 | ------------ | -------------------------| ------------------------------------------------------------------------------------------------------|
 | plyees       | (all ply tests)          | Glob pattern(s) for requests/flows/cases                                                              |
 | cwd          | .                        | Working directory for ply execution                                                                   |
-| ply-path     | (embedded ply)           | Path to ply package when installed as dependency (eg: node_modules/@ply-ct/ply/dist)                  |
+| ply-path     | (embedded ply)           | Path to ply package when installed as dependency (eg: node_modules/@ply-ct/ply)                       |
 | result-file  |                          | Result file in case Ply tests were already run in a previous workflow/job                             |
 | badge-branch |                          | Branch to contain status badge (eg: "badge"). Needed to display Ply badge for private repositories.   |
 | badge-path   | ply-badge.svg            | Save badge to this file path (relative to repo root). Only used with badge-branch.                    |

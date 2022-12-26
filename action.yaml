@@ -12,7 +12,7 @@ inputs:
     required: false
     default: '.'
   ply-path:
-    description: 'Path to ply package (eg: node_modules/@ply-ct/ply/dist). Defaults to embedded ply.'
+    description: 'Path to ply package (eg: node_modules/@ply-ct/ply). Defaults to embedded ply.'
     required: false
   result-file:
     description: Result file in case Ply tests were already run in a previous workflow/job
