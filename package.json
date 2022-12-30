@@ -1,6 +1,6 @@
 {
   "name": "ply-action",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Ply GitHub Action",
   "main": "index.js",
   "keywords": [
@@ -17,7 +17,8 @@
   "scripts": {
     "lint": "eslint src",
     "ver": "PKG_VER=$(jq -r .version ./package.json) && echo export const plyActionVersion = \\'$PKG_VER\\'\\; > src/version.ts",
-    "build": "npm run ver && tsc && ncc build -o dist src/action.ts",
+    "build": "npm run ver && tsc && npm run cleanup && ncc build -o dist -e dist src/action.ts",
+    "cleanup": "mkdir -p temp && cp dist/.gitignore temp && rm -rf dist && mkdir dist && mv temp/.gitignore dist",
     "test": "mocha --require ts-node/register test/**/*.test.ts"
   },
   "devDependencies": {
@@ -28,7 +29,7 @@
     "@types/node-fetch": "^2.6.2",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
-    "@vercel/ncc": "^0.34.0",
+    "@vercel/ncc": "^0.36.0",
     "chai": "^4.3.7",
     "eslint": "^8.30.0",
     "mocha": "^10.2.0",
@@ -38,7 +39,7 @@
     "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.1",
-    "@ply-ct/ply": "^3.0.50",
+    "@ply-ct/ply": "^3.0.51",
     "glob": "^7.2.3",
     "node-fetch": "^2.6.7"
   }

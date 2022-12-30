@@ -1,6 +1,7 @@
 {
   "github": {
     "organization": "ply-ct",
-    "repository": "ply"
+    "repository": "ply",
+    "token": "${GITHUB_TOKEN}"
   }
 }

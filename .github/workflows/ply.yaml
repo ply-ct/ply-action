@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FORCE_COLOR: 'true'
-      PLY_VALUES: ${{ secrets.PLY_VALUES }}
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
