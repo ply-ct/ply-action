@@ -17,7 +17,7 @@
   "scripts": {
     "lint": "eslint src",
     "ver": "PKG_VER=$(jq -r .version ./package.json) && echo export const plyActionVersion = \\'$PKG_VER\\'\\; > src/version.ts",
-    "build": "npm run ver && tsc && npm run cleanup && ncc build -o dist -e dist src/action.ts",
+    "build": "npm run ver && tsc && npm run cleanup && ncc build -o dist src/action.ts",
     "cleanup": "mkdir -p temp && cp dist/.gitignore temp && rm -rf dist && mkdir dist && mv temp/.gitignore dist",
     "test": "mocha --require ts-node/register test/**/*.test.ts"
   },
