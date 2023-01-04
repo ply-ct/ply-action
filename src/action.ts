@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as core from '@actions/core';
-import { PlyArgs, PlyRunner, RunResult, RunStatus } from './runner';
+import { PlyRunner, RunResult, RunStatus } from './runner';
 import { Brancher } from './brancher';
 import { Badger } from './badger';
 import { plyActionVersion } from './version';
@@ -23,16 +23,7 @@ if (resultFile) {
         await updateBadge('failing');
     });
 } else {
-    const args: PlyArgs = {
-        cwd: core.getInput('cwd'),
-        plyPath: core.getInput('ply-path')
-    };
-    const plyees = core.getInput('plyees');
-    if (plyees) {
-        args.plyees = plyees.split('\n').map(s => s.trim()).filter(s => s !== '');
-    }
-
-    new PlyRunner().run(args)
+    new PlyRunner().run()
     .then(async (result) => {
         await handleResult(result);
     })

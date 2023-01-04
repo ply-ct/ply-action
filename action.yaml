@@ -4,9 +4,6 @@ branding:
   icon: play
   color: blue
 inputs:
-  plyees:
-    description: Glob pattern(s) for requests/flows/cases (otherwise all ply tests)
-    required: false
   cwd:
     description: Working directory for ply execution
     required: false

@@ -5,14 +5,6 @@ import * as glob from 'glob';
 
 export type RunStatus = 'passing' | 'failing';
 
-export interface PlyArgs {
-    cwd: string;
-    plyPath?: string;
-    plyees?: string[];  // Plyee paths
-    plyOptions?: object;
-    runOptions?: object;
-}
-
 export interface RunResult {
     Passed: number;
     Failed: number;
@@ -23,23 +15,23 @@ export interface RunResult {
 
 export class PlyRunner {
 
-    async run(args: PlyArgs): Promise<RunResult> {
+    async run(): Promise<RunResult> {
         const start = Date.now();
 
-        process.chdir(args.cwd || '.');
-        const cwd = path.resolve(process.cwd());
-        core.info(`Running ply in directory: ${path.normalize(cwd)}`);
+        const cwd = path.resolve(core.getInput('cwd'));
+        core.info(`Running ply in directory: ${cwd}`);
+        process.chdir(cwd);
 
-        let plyPath = '';
-        if (args.plyPath) {
-            plyPath = path.isAbsolute(args.plyPath) ? args.plyPath : path.resolve(args.plyPath);
+        let plyPath = core.getInput('ply-path');
+        if (plyPath) {
+            plyPath = path.normalize(path.isAbsolute(plyPath) ? plyPath : path.resolve(plyPath));
             core.info(`Using ply package at ${plyPath}`);
         }
 
         // actual execution uses ply on specified path
         const ply = plyPath ? require(plyPath + '/dist/index.js') : require('@ply-ct/ply');
         const Plier: typeof import('@ply-ct/ply').Plier = ply.Plier;
-        const plier = new Plier(args.plyOptions);
+        const plier = new Plier();
         const globOptions = {
             cwd: plier.options.testsLocation,
             ignore: plier.options.ignore
@@ -61,7 +53,7 @@ export class PlyRunner {
 
         core.info(`Running plyees:\n${plyees.join()}`);
 
-        const results = await plier.run(plyees, args.runOptions);
+        const results = await plier.run(plyees);
         const res: RunResult = { Passed: 0, Failed: 0, Errored: 0, Pending: 0, Submitted: 0 };
         results.forEach(result => res[result.status]++);
         core.info('\nOverall Results: ' + JSON.stringify(res));

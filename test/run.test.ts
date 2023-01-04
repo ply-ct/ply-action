@@ -1,16 +1,11 @@
 import { expect } from 'chai';
-import { PlyArgs, PlyRunner } from '../src/runner';
+import { PlyRunner } from '../src/runner';
 
 describe('runner', () => {
 
     it('runs ply', async () => {
 
-        const args: PlyArgs = {
-            cwd: '.',
-            plyPath: 'node_modules/@ply-ct/ply/dist'
-        };
-
-        const res = await new PlyRunner().run(args);
+        const res = await new PlyRunner().run();
 
         expect(res?.Passed).to.be.equal(2);
         expect(res?.Failed).to.be.equal(0);
