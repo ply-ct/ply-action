@@ -1,6 +1,7 @@
 import * as process from 'process';
 import * as path from 'path';
 import * as core from '@actions/core';
+import * as tsNode from 'ts-node';
 import * as glob from 'glob';
 
 export type RunStatus = 'passing' | 'failing';
@@ -17,6 +18,8 @@ export class PlyRunner {
 
     async run(): Promise<RunResult> {
         const start = Date.now();
+
+        tsNode.register({ transpileOnly: true });
 
         const cwd = path.resolve(core.getInput('cwd'));
         core.info(`Running ply in directory: ${cwd}`);
