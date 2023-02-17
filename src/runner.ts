@@ -53,7 +53,7 @@ export class PlyRunner {
 
         core.info(`Running plyees:\n${plyees.join()}`);
 
-        const results = await plier.run(plyees);
+        const results = await plier.run(plyees, { trusted: true });
         const res: RunResult = { Passed: 0, Failed: 0, Errored: 0, Pending: 0, Submitted: 0 };
         results.forEach(result => res[result.status]++);
         core.info('\nOverall Results: ' + JSON.stringify(res));
