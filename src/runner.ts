@@ -53,7 +53,6 @@ export class PlyRunner {
 
         core.info(`Running plyees:\n${plyees.join()}`);
 
-        require('ts-node/register');
         const results = await plier.run(plyees);
         const res: RunResult = { Passed: 0, Failed: 0, Errored: 0, Pending: 0, Submitted: 0 };
         results.forEach(result => res[result.status]++);
