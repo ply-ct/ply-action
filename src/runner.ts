@@ -5,7 +5,7 @@ import * as glob from 'glob';
 
 export type RunStatus = 'passing' | 'failing';
 
-export interface RunResult {
+export interface OverallResults {
     Passed: number;
     Failed: number;
     Errored: number;
@@ -15,7 +15,7 @@ export interface RunResult {
 
 export class PlyRunner {
 
-    async run(): Promise<RunResult> {
+    async run(): Promise<OverallResults> {
         const start = Date.now();
 
         const cwd = path.resolve(core.getInput('cwd'));
@@ -23,15 +23,22 @@ export class PlyRunner {
         process.chdir(cwd);
 
         let plyPath = core.getInput('ply-path');
-        if (plyPath) {
-            plyPath = path.normalize(path.isAbsolute(plyPath) ? plyPath : path.resolve(plyPath));
-            core.info(`Using ply package at ${plyPath}`);
-        }
+        plyPath = path.normalize(path.isAbsolute(plyPath) ? plyPath : path.resolve(plyPath));
+        core.info(`Using ply package at ${plyPath}`);
 
         // actual execution uses ply on specified path
-        const ply = plyPath ? require(plyPath + '/dist/index.js') : require('@ply-ct/ply');
-        const Plier: typeof import('@ply-ct/ply').Plier = ply.Plier;
+        const ply = require(plyPath + '/dist/index.js');
+        const Plier: any = ply.Plier;
         const plier = new Plier();
+
+        const valuesFiles = core.getInput('values-files');
+        if (valuesFiles) {
+            plier.options.valuesFiles = valuesFiles.split(/\r?\n/).reduce((vfs, vf) => {
+                vfs[vf] = true;
+                return vfs;
+            }, {} as { [file: string]: boolean });
+        }
+
         const globOptions = {
             cwd: plier.options.testsLocation,
             ignore: plier.options.ignore
@@ -54,13 +61,14 @@ export class PlyRunner {
         core.info(`Running plyees:\n${plyees.join()}`);
 
         const results = await plier.run(plyees, { trusted: true });
-        const res: RunResult = { Passed: 0, Failed: 0, Errored: 0, Pending: 0, Submitted: 0 };
-        results.forEach(result => res[result.status]++);
-        core.info('\nOverall Results: ' + JSON.stringify(res));
+        if (Array.isArray(results)) {
+            throw new Error('Unsupported ply version: < 3.1.0');
+        }
+        core.info('\nOverall Results: ' + JSON.stringify(results));
         core.info(`Overall Time: ${Date.now() - start} ms`);
         if (plier.options.outputFile) {
-            new ply.Storage(plier.options.outputFile).write(JSON.stringify(res, null, plier.options.prettyIndent));
+            new ply.Storage(plier.options.outputFile).write(JSON.stringify(results, null, plier.options.prettyIndent));
         }
-        return res;
+        return results;
     }
 }

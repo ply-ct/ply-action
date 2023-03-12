@@ -1,1 +1,1 @@
-export const plyActionVersion = '2.5.0';
+export const plyActionVersion = '3.0.0';

@@ -21,5 +21,3 @@ jobs:
         node-version: '16.x'
     - run: npm install
     - uses: ./
-      # with:
-      #   ply-path: node_modules/@ply-ct/ply

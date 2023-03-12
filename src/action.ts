@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as core from '@actions/core';
-import { PlyRunner, RunResult, RunStatus } from './runner';
+import { PlyRunner, OverallResults, RunStatus } from './runner';
 import { Brancher } from './brancher';
 import { Badger } from './badger';
 import { plyActionVersion } from './version';
@@ -35,7 +35,7 @@ if (resultFile) {
     });
 }
 
-const handleResult = async (result: RunResult) => {
+const handleResult = async (result: OverallResults) => {
     core.setOutput('ply-result', result);
     try {
         const success = !result.Failed && !result.Errored;
